@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifeworld Media Studio | Creative Production & Digital Agency</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Configuration for Custom Brand Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0A0A0A',
+                        darkCard: '#121212',
+                        darkBorder: '#262626',
+                        brandRed: '#E53935',
+                        brandOrange: '#FB8C00',
+                        muted: '#9CA3AF',
+                    },
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                        display: ['"Syne"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'brand-gradient': 'linear-gradient(135deg, #E53935 0%, #FB8C00 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0A0A0A; }
+        ::-webkit-scrollbar-thumb { background: #E53935; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #FB8C00; }
+        
+        /* Smooth Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Glassmorphism for Form */
+        .glass-form {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #E53935 0%, #FB8C00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Service Card Hover */
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(229, 57, 53, 0.1); }
+    </style>
+</head>
+<body class="font-sans text-gray-200 bg-dark antialiased overflow-x-hidden selection:bg-brandRed selection:text-white">
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/2349059202486?text=Hello%20Lifeworld%20Media%20Studio,%20I'd%20like%20to%20make%20an%20enquiry." target="_blank" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg hover:scale-110 transition-transform duration-300">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-40 transition-all duration-500" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo mimicking the LMS brand -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-12 h-12 rounded-full border-2 border-brandRed flex items-center justify-center bg-darkCard shadow-[0_0_15px_rgba(229,57,53,0.5)]">
+                        <span class="font-display font-bold text-xl text-gradient">LMS</span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="font-display font-bold text-lg tracking-wider text-white block leading-tight">LIFEWORLD</span>
+                        <span class="text-[0.6rem] tracking-[0.2em] text-muted uppercase">Media Studio</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a href="#home" class="text-muted hover:text-white transition font-medium text-xs tracking-widest uppercase">Home</a>
+                    <a href="#services" class="text-muted hover:text-white transition font-medium text-xs tracking-widest uppercase">Services</a>
+                    <a href="#portfolio" class="text-muted hover:text-white transition font-medium text-xs tracking-widest uppercase">Portfolio</a>
+                    <a href="#booking" class="bg-brand-gradient text-white px-8 py-3 rounded-full font-bold hover:opacity-90 transition duration-300 text-xs tracking-widest uppercase shadow-lg shadow-brandRed/20">Book Now</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white text-2xl focus:outline-none">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark border-t border-darkBorder">
+            <div class="px-6 py-6 flex flex-col space-y-6">
+                <a href="#home" class="text-white text-lg font-medium tracking-widest uppercase">Home</a>
+                <a href="#services" class="text-white text-lg font-medium tracking-widest uppercase">Services</a>
+                <a href="#portfolio" class="text-white text-lg font-medium tracking-widest uppercase">Portfolio</a>
+                <a href="#booking" class="bg-brand-gradient text-white px-6 py-3 rounded-full text-center font-bold tracking-widest uppercase">Book Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center bg-black pt-20">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <!-- High-end professional image matching the red suit aesthetic -->
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2088&auto=format&fit=crop" alt="Professional Creative Studio" class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark via-dark/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-dark via-transparent to-transparent"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-darkBorder bg-darkCard/50 backdrop-blur-sm mb-8 reveal">
+                    <span class="w-2 h-2 rounded-full bg-brandRed animate-pulse"></span>
+                    <span class="text-xs font-medium tracking-widest text-muted uppercase">Ibeju Lekki Business Hub Admin</span>
+                </div>
+                
+                <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.1] mb-8 reveal" style="transition-delay: 100ms;">
+                    Elevating Brands Through <span class="text-gradient">Visual Storytelling.</span>
+                </h1>
+                
+                <p class="text-muted text-lg md:text-xl mb-10 max-w-xl font-light reveal" style="transition-delay: 200ms;">
+                    Photography • Graphics & Printing • Creative Production • Digital Marketing • Training. Your all-in-one media solution.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 reveal" style="transition-delay: 300ms;">
+                    <a href="#booking" class="bg-brand-gradient text-white px-10 py-4 rounded-full font-bold hover:opacity-90 transition duration-300 text-center tracking-wider text-sm uppercase shadow-lg shadow-brandRed/25">
+                        Book a Session
+                    </a>
+                    <a href="#services" class="border border-white/20 text-white px-10 py-4 rounded-full font-bold hover:bg-white hover:text-black transition duration-300 text-center tracking-wider text-sm uppercase">
+                        Explore Services
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Trust Badge -->
+        <div class="absolute bottom-10 right-10 hidden lg:flex items-center gap-4 bg-darkCard/80 backdrop-blur-md border border-darkBorder p-4 rounded-2xl reveal" style="transition-delay: 400ms;">
+            <div class="flex text-brandOrange">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <div>
+                <p class="text-white font-bold text-sm">100% Recommend</p>
+                <p class="text-muted text-xs">(5 reviews)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION (Bento Grid) -->
+    <section id="services" class="py-24 bg-dark relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brandRed font-semibold tracking-widest uppercase text-xs">What We Do</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-white mt-4">Our Creative Ecosystem</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Large Card: Photography -->
+                <div class="bg-darkCard p-8 rounded-3xl border border-darkBorder service-card transition duration-500 md:col-span-2 md:row-span-2 relative overflow-hidden group reveal">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=2070&auto=format&fit=crop" alt="Photography" class="w-full h-full object-cover opacity-20 group-hover:opacity-30 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-darkCard/80 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 h-full flex flex-col justify-end">
+                        <div class="w-14 h-14 bg-brandRed/10 rounded-full flex items-center justify-center mb-6 border border-brandRed/30">
+                            <i class="fa-solid fa-camera text-xl text-brandRed"></i>
+                        </div>
+                        <h3 class="font-display text-3xl font-bold text-white mb-3">Photography & Videography</h3>
+                        <p class="text-muted text-sm leading-relaxed max-w-md">High-end studio portraits, event coverage (weddings, corporate), product photography, and cinematic video production that captures the essence of your brand.</p>
+                    </div>
+                </div>
+                
+                <!-- Card: Graphics & Printing -->
+                <div class="bg-darkCard p-8 rounded-3xl border border-darkBorder service-card transition duration-500 relative overflow-hidden group reveal" style="transition-delay: 100ms;">
+                    <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brandOrange/10 transition">
+                        <i class="fa-solid fa-palette text-lg text-white group-hover:text-brandOrange transition"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Graphics & Printing</h3>
+                    <p class="text-muted text-sm leading-relaxed">Logo design, brand identity, large format printing, and marketing collateral that makes your business stand out.</p>
+                </div>
+
+                <!-- Card: Creative Production -->
+                <div class="bg-darkCard p-8 rounded-3xl border border-darkBorder service-card transition duration-500 relative overflow-hidden group reveal" style="transition-delay: 200ms;">
+                    <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brandOrange/10 transition">
+                        <i class="fa-solid fa-clapperboard text-lg text-white group-hover:text-brandOrange transition"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Creative Production</h3>
+                    <p class="text-muted text-sm leading-relaxed">From concept to creation. We handle set design, directing, and full-scale media production for your campaigns.</p>
+                </div>
+
+                <!-- Card: Digital Marketing -->
+                <div class="bg-darkCard p-8 rounded-3xl border border-darkBorder service-card transition duration-500 relative overflow-hidden group reveal" style="transition-delay: 300ms;">
+                    <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brandOrange/10 transition">
+                        <i class="fa-solid fa-chart-line text-lg text-white group-hover:text-brandOrange transition"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Digital Marketing</h3>
+                    <p class="text-muted text-sm leading-relaxed">Social media management, targeted ad campaigns, and content strategy to grow your online presence and drive sales.</p>
+                </div>
+
+                <!-- Card: Training -->
+                <div class="bg-darkCard p-8 rounded-3xl border border-darkBorder service-card transition duration-500 relative overflow-hidden group reveal" style="transition-delay: 400ms;">
+                    <div class="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brandOrange/10 transition">
+                        <i class="fa-solid fa-graduation-cap text-lg text-white group-hover:text-brandOrange transition"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Training</h3>
+                    <p class="text-muted text-sm leading-relaxed">Hands-on masterclasses in photography, videography, and digital marketing for aspiring creatives and business owners.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO PREVIEW -->
+    <section id="portfolio" class="py-24 bg-darkCard border-y border-darkBorder">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                <div>
+                    <span class="text-brandRed font-semibold tracking-widest uppercase text-xs">Recent Work</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold text-white mt-4">Featured Projects</h2>
+                </div>
+                <a href="https://www.instagram.com/lifeworldmediastudio" target="_blank" class="text-brandRed hover:text-white transition font-medium mt-4 md:mt-0 flex items-center gap-2 text-sm tracking-widest uppercase">
+                    View Full Portfolio <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="relative overflow-hidden rounded-2xl group h-96 reveal">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" alt="Wedding Coverage" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-8">
+                        <div>
+                            <h4 class="text-white font-display text-2xl font-bold">Elegant Wedding</h4>
+                            <p class="text-brandOrange text-sm font-medium mt-1">Event Coverage</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-2xl group h-96 reveal" style="transition-delay: 100ms;">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop" alt="Branding" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-8">
+                        <div>
+                            <h4 class="text-white font-display text-2xl font-bold">Corporate Branding</h4>
+                            <p class="text-brandOrange text-sm font-medium mt-1">Graphics & Printing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-2xl group h-96 reveal" style="transition-delay: 200ms;">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" alt="Studio Portrait" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex items-end p-8">
+                        <div>
+                            <h4 class="text-white font-display text-2xl font-bold">Professional Headshots</h4>
+                            <p class="text-brandOrange text-sm font-medium mt-1">Studio Photography</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SMART BOOKING & AUTOMATION SECTION -->
+    <section id="booking" class="py-24 bg-dark relative overflow-hidden">
+        <!-- Decorative Glow -->
+        <div class="absolute top-1/2 left-0 w-96 h-96 bg-brandRed/10 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Left Info Side -->
+                <div class="reveal">
+                    <span class="text-brandRed font-semibold tracking-widest uppercase text-xs">Automated Booking</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-bold text-white mt-4 mb-8">Let's Build Your <br> <span class="text-gradient">Next Project.</span></h2>
+                    <p class="text-muted text-lg mb-10 leading-relaxed font-light">
+                        We make it effortless to get started. Fill out the smart form, and our system will instantly compile your details and connect you directly to our team via WhatsApp for a fast, personalized response.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-5">
+                            <div class="w-12 h-12 bg-darkCard border border-darkBorder rounded-full flex items-center justify-center text-brandRed flex-shrink-0">
+                                <i class="fa-solid fa-phone text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white tracking-wide">Call or WhatsApp</h4>
+                                <a href="tel:+2349059202486" class="text-muted hover:text-white transition mt-1 block">+234 905 920 2486</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5">
+                            <div class="w-12 h-12 bg-darkCard border border-darkBorder rounded-full flex items-center justify-center text-brandRed flex-shrink-0">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white tracking-wide">Email Us</h4>
+                                <a href="mailto:lifeworldmediastudio@gmail.com" class="text-muted hover:text-white transition mt-1 block">lifeworldmediastudio@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5">
+                            <div class="w-12 h-12 bg-darkCard border border-darkBorder rounded-full flex items-center justify-center text-brandRed flex-shrink-0">
+                                <i class="fa-solid fa-location-dot text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white tracking-wide">Location</h4>
+                                <p class="text-muted mt-1">Ibeju Lekki, Lagos, Nigeria</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Form Side (Automation) -->
+                <div class="bg-dark rounded-3xl shadow-2xl p-8 md:p-10 glass-form relative overflow-hidden reveal" style="transition-delay: 200ms;">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brandRed/10 rounded-bl-full pointer-events-none"></div>
+
+                    <h3 class="font-display text-2xl font-bold text-white mb-2">Instant Booking Request</h3>
+                    <p class="text-muted text-sm mb-8">Fill this out to send a direct WhatsApp message to our team.</p>
+                    
+                    <form id="bookingForm" class="space-y-6">
+                        <div>
+                            <label class="block text-muted text-xs font-medium mb-2 tracking-widest uppercase">Full Name</label>
+                            <input type="text" id="clientName" required class="w-full bg-darkCard border border-darkBorder rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brandRed focus:ring-1 focus:ring-brandRed transition" placeholder="e.g. John Doe">
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-muted text-xs font-medium mb-2 tracking-widest uppercase">Service Required</label>
+                                <select id="serviceType" required class="w-full bg-darkCard border border-darkBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brandRed focus:ring-1 focus:ring-brandRed transition appearance-none cursor-pointer">
+                                    <option value="" disabled selected class="bg-dark">Select service</option>
+                                    <option value="Photography & Videography" class="bg-dark">Photography & Videography</option>
+                                    <option value="Graphics & Printing" class="bg-dark">Graphics & Printing</option>
+                                    <option value="Creative Production" class="bg-dark">Creative Production</option>
+                                    <option value="Digital Marketing" class="bg-dark">Digital Marketing</option>
+                                    <option value="Training" class="bg-dark">Training</option>
+                                    <option value="Other" class="bg-dark">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-muted text-xs font-medium mb-2 tracking-widest uppercase">Preferred Date</label>
+                                <input type="date" id="serviceDate" required class="w-full bg-darkCard border border-darkBorder rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brandRed focus:ring-1 focus:ring-brandRed transition [color-scheme:dark] cursor-pointer">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-muted text-xs font-medium mb-2 tracking-widest uppercase">Project Details (Optional)</label>
+                            <textarea id="projectDetails" rows="3" class="w-full bg-darkCard border border-darkBorder rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-brandRed focus:ring-1 focus:ring-brandRed transition" placeholder="Tell us about your vision..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-gradient text-white font-bold py-4 rounded-xl hover:opacity-90 transition duration-300 shadow-lg shadow-brandRed/20 flex items-center justify-center gap-3 mt-4">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Send via WhatsApp
+                        </button>
+                        <p class="text-center text-xs text-muted mt-2">Clicking will open WhatsApp with your pre-filled details.</p>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-16 border-t border-darkBorder">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full border-2 border-brandRed flex items-center justify-center bg-darkCard">
+                            <span class="font-display font-bold text-sm text-gradient">LMS</span>
+                        </div>
+                        <div>
+                            <span class="font-display font-bold text-lg tracking-wider text-white block leading-tight">LIFEWORLD</span>
+                            <span class="text-[0.6rem] tracking-[0.2em] text-muted uppercase">Media Studio</span>
+                        </div>
+                    </div>
+                    <p class="text-muted text-sm leading-relaxed max-w-sm">
+                        Your all-in-one creative partner. We specialize in Photography, Graphics & Printing, Creative Production, Digital Marketing, and Training. Based in Ibeju Lekki, serving clients nationwide.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6 uppercase tracking-widest text-xs">Quick Links</h4>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Services</a></li>
+                        <li><a href="#portfolio" class="hover:text-white transition">Portfolio</a></li>
+                        <li><a href="#booking" class="hover:text-white transition">Book a Session</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-6 uppercase tracking-widest text-xs">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/lifeworldmediastudio" target="_blank" class="w-10 h-10 border border-darkBorder rounded-full flex items-center justify-center hover:bg-brandRed hover:border-brandRed transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/2349059202486" target="_blank" class="w-10 h-10 border border-darkBorder rounded-full flex items-center justify-center hover:bg-brandRed hover:border-brandRed transition"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="mailto:lifeworldmediastudio@gmail.com" class="w-10 h-10 border border-darkBorder rounded-full flex items-center justify-center hover:bg-brandRed hover:border-brandRed transition"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-darkBorder pt-8 text-center text-xs text-muted tracking-wider">
+                &copy; 2024 Lifeworld Media Studio. All rights reserved. Designed for excellence.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 1. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-dark/95', 'backdrop-blur-md', 'border-b', 'border-darkBorder');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-dark/95', 'backdrop-blur-md', 'border-b', 'border-darkBorder');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // 3. Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+            
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger once on load
+
+        // 4. SMART WHATSAPP BOOKING AUTOMATION
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('clientName').value;
+            const serviceType = document.getElementById('serviceType').value;
+            const date = document.getElementById('serviceDate').value;
+            const details = document.getElementById('projectDetails').value || 'No additional details provided.';
+            
+            // Format the date nicely
+            const formattedDate = new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            // Construct the automated message
+            const message = `*New Booking Request - Lifeworld Media Studio*%0A%0A` +
+                            `*Name:* ${name}%0A` +
+                            `*Service Required:* ${serviceType}%0A` +
+                            `*Preferred Date:* ${formattedDate}%0A%0A` +
+                            `*Details:* ${details}%0A%0A` +
+                            `Hello LMS Team, I'd like to book this session with you.`;
+            
+            // WhatsApp Number
+            const phoneNumber = '2349059202486'; 
+            
+            // Open WhatsApp with the automated message
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+            window.open(whatsappURL, '_blank');
+            
+            // Reset form and show confirmation
+            this.reset();
+            alert('Your request is being sent to Lifeworld Media Studio on WhatsApp. We look forward to creating magic with you!');
+        });
+    </script>
+</body>
+</html>
